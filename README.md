@@ -1,2 +1,1 @@
-# lw1
-repository for first lw
+Andrey Odintsov iSpring PS-12
