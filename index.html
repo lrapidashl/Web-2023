@@ -4,155 +4,132 @@
   <head>
     <meta charset="utf-8" />
     <title>Let's do it together</title>
-    <style>
-      #the_road_ahead{
-        width: 460px;
-        height: 280px;
-        background-image: url(./images/posts/the_road_ahead.png);
-        background-size: cover;
-      }
-    </style>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main_page.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <header>
-      <p>Escape.</p>
-      <nav>
-        <a href="./index.html">HOME</a>
-        <a href="">CATEGORIES</a>
-        <a href="">ABOUT</a>
-        <a href="">CONTACT</a>
+  <body class="page">
+    <header class="header">
+      <span class="header__logo">Escape.</span>
+      <nav class="header__navigation">
+        <a href="./index.html" class="header-navigation__link">HOME</a>
+        <a href="#" class="header-navigation__link">CATEGORIES</a>
+        <a href="#" class="header-navigation__link">ABOUT</a>
+        <a href="#" class="header-navigation__link">CONTACT</a>
       </nav>
     </header>
-    <section>
-      <h1>Let's do it together</h1>
-      <p>
-        We travel the world in search of stories. Come along for the ride.
-      </p>
-      <button>View Latest Posts</button>
-      <nav>
-        <a href="">Nature</a>
-        <a href="">Photography</a>
-        <a href="">Relaxation</a>
-        <a href="">Vacation</a>
-        <a href="">Travel</a>
-        <a href="">Adventure</a>
-      </nav>
-    </section>
-    <section>
-      <h2>Featured Posts</h2>
-      <hr />
-      <div onclick="location.href='./the-road-ahead.html'" id="the_road_ahead">
-        <p>The Road Ahead</p>
-        <p>
-          The road ahead might be paved - it might not be. 
-        </p>
-        <p>
-          <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" width="26" height="26"/>
-          Mat Vogels <span>September 25, 2015</span>
-        </p>
+    <div class="main">
+      <div class="top-block">
+        <h1 class="top-block__title">Let's do it together</h1>
+        <p class="top-block__description">We travel the world in search of stories. Come along for the ride.</p> <br>
+        <button class="top-block__button">View Latest Posts</button>
       </div>
-      <div>
-        <p>Adventure From Top Down</p>
-        <p>
-          Once a year, go someplace you’ve never been before. 
-        </p>
-        <p>
-          <img src="./images/authors/William_Wong.png" alt="William Wong" width="26" height="26"/>
-          William Wong <span>September 25, 2015</span>
-        </p>
+      <div class="tags">
+        <a href="#" class="tags__link">Nature</a>
+        <a href="#" class="tags__link">Photography</a>
+        <a href="#" class="tags__link">Relaxation</a>
+        <a href="#" class="tags__link">Vacation</a>
+        <a href="#" class="tags__link">Travel</a>
+        <a href="#" class="tags__link">Adventure</a>
       </div>
-    </section>
-    <section>
-      <h2>Most Recent</h2>
-      <hr />
-      <div>
-        <p>
-          <img src="./images/posts/still_standing_tall.png" alt="Balloons in the sky" width="296" height="150"/>
-          Still Standing Tall
-        </p>
-        <p>
-          Life begins at the end of your comfort zone.
-        </p>
-        <p>
-          <img src="./images/authors/William_Wong.png" alt="William Wong" width="26" height="26"/>
-          William Wong <span>9/25/2015</span>
-        </p>
+      <section class="featured-posts">
+        <h2 class="featured-posts__title">Featured Posts</h2>
+        <div onclick="location.href='./the_road_ahead.html'"
+          class="feautured-posts__post feautured-posts__post_the-road-ahead">
+          <span class="featured-posts__post-title">The Road Ahead</span>
+          <span class="featured-posts__post-description">The road ahead might be paved - it might not be.</span>
+          <div class="featured-posts__information">
+            <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" class="featured-posts__post-author-image" />
+            <span class="featured-posts__post-author">Mat Vogels</span>
+            <span class="featured-posts__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="feautured-posts__post feautured-posts__post_from-top-down">
+          <span class="featured-posts__post-title">From Top Down</span>
+          <span class="featured-posts__post-description">Once a year, go someplace you’ve never been before.</span>
+          <div class="featured-posts__information">
+            <img src="./images/authors/William_Wong.png" alt="William Wong" class="featured-posts__post-author-image" />
+            <span class="featured-posts__post-author">William Wong</span>
+            <span class="featured-posts__post-date">September 25, 2015</span>
+          </div>
+        </div>
+      </section>
+      <section class="most-recent">
+        <h2 class="most-recent__title">Most Recent</h2>
+        <div class="most-recent__post">
+          <img src="./images/posts/still_standing_tall.png" alt="Balloons in the sky" class="most-recent__post-image" />
+          <span class="most-recent__post-title">Still Standing Tall</span>
+          <span class="most-recent__post-description">Life begins at the end of your comfort zone.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/William_Wong.png" alt="William Wong" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">William Wong</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="most-recent__post">
+          <img src="./images/posts/sunny_side_up.png" alt="Golden gate bridge" class="most-recent__post-image" />
+          <span class="most-recent__post-title">Sunny Side Up</span>
+          <span class="most-recent__post-description">No place is ever as bad as they tell you it’s going to be.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">Mat Vogels</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="most-recent__post">
+          <img src="./images/posts/water_falls.png" alt="Yellow dawn over the lake" class="most-recent__post-image" />
+          <span class="most-recent__post-title">Water Falls</span>
+          <span class="most-recent__post-description">We travel not to escape life, but for life not to escape us.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">Mat Vogels</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="most-recent__post">
+          <img src="./images/posts/through_the_mist.png" alt="Light waves" class="most-recent__post-image" />
+          <span class="most-recent__post-title">Througt the Mist</span>
+          <span class="most-recent__post-description">Travel makes you see what a tiny place you occupy in the world.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/William_Wong.png" alt="William Wong" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">William Wong</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="most-recent__post">
+          <img src="./images/posts/awaken_early.png" alt="Funicular in thick fog" class="most-recent__post-image" />
+          <span class="most-recent__post-title">Awaken Early</span>
+          <span class="most-recent__post-description">Not all those who wander are lost.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">Mat Vogels</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+        <div class="most-recent__post">
+          <img src="./images/posts/try_it_always.png" alt="A man stands in front of a waterfall with a rainbow"
+            class="most-recent__post-image" />
+          <span class="most-recent__post-title">Try it Always</span>
+          <span class="most-recent__post-description">The world is a book, and those who do not travel read only one page.</span>
+          <div class="most-recent__information">
+            <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" class="most-recent__post-author-image" />
+            <span class="most-recent__post-author">Mat Vogels</span>
+            <span class="most-recent__post-date">September 25, 2015</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer__blackout">
+        <span class="footer__logo">Escape.</span>
+        <nav class="footer__navigation">
+          <a href="./index.html" class="footer__navigation-link">HOME</a>
+          <a href="#" class="footer__navigation-link">CATEGORIES</a>
+          <a href="#" class="footer__navigation-link">ABOUT</a>
+          <a href="#" class="footer__navigation-link">CONTACT</a>
+        </nav>
       </div>
-      <div>
-        <p>
-          <img src="./images/posts/sunny_side_up.png" alt="Golden gate bridge" width="296" height="150"/>
-          Sunny Side Up
-        </p>
-        <p>
-          No place is ever as bad as they tell you it’s going to be.
-        </p>
-        <p>
-          <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" width="26" height="26"/>
-          Mat Vogels <span>9/25/2015</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <img src="./images/posts/water_falls.png" alt="Yellow dawn over the lake" width="296" height="150"/>
-          Water Falls
-        </p>
-        <p>
-          We travel not to escape life, but for life not to escape us.
-        </p>
-        <p>
-          <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" width="26" height="26"/>
-          Mat Vogels <span>9/25/2015</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <img src="./images/posts/through_the_mist.png" alt="Light waves" width="296" height="150"/>
-          Througt the Mist
-        </p>
-        <p>
-          Travel makes you see what a tiny place you occupy in the world.
-        </p>
-        <p>
-          <img src="./images/authors/William_Wong.png" alt="William Wong" width="26" height="26"/>
-          William Wong <span>9/25/2015</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <img src="./images/posts/awaken_early.png" alt="Funicular in thick fog" width="296" height="150"/>
-          Awaken Early
-        </p>
-        <p>
-          Not all those who wander are lost.
-        </p>
-        <p>
-          <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" width="26" height="26"/>
-          Mat Vogels <span>9/25/2015</span>
-        </p>
-      </div>
-      <div>
-        <p>
-          <img src="./images/posts/try_it_always.png" alt="A man stands in front of a waterfall with a rainbow" width="296" height="150"/>
-          Try it Always
-        </p>
-        <p>
-          The world is a book, and those who do not travel read only one page.
-        </p>
-        <p>
-          <img src="./images/authors/Mat_Vogels.png" alt="Mat Vogels" width="26" height="26"/>
-          Mat Vogels <span>9/25/2015</span>
-        </p>
-      </div>
-    </section>
-    <footer>
-      <span>Escape.</span>
-      <nav>
-        <a href="./index.html">HOME</a>
-        <a href="">CATEGORIES</a>
-        <a href="">ABOUT</a>
-        <a href="">CONTACT</a>
-      </nav>
     </footer>
   </body>
 
