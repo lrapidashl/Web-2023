@@ -7,7 +7,7 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
-    padding: 20.2px 0;
+    margin: 20.2px 0 0 0;
     width: 100%;
     color: #FFFFFF;
 }
@@ -44,14 +44,14 @@
     background-size: cover;
 }
 
-.respond {
+.mailing {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     padding: 81px 0 90px;
 }
 
-.respond__title {
+.mailing__title {
     font: 400 25px/1.2 "Oxygen", sans-serif;
     color: #FFFFFF;
     margin: 0 auto 20px;
@@ -59,13 +59,13 @@
     border-bottom: 1px solid #FFFFFF;
 }
 
-.respond__form {
+.mailing__form {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-.respond-form__email {
+.mailing-form__email {
     max-width: 375px;
     width: 100%;
     padding: 18px 35px;
@@ -76,7 +76,7 @@
     border-radius: 3px 0 0 3px;
 }
 
-.respond-form__submit {
+.mailing-form__submit {
     max-width: 125px;
     width: 100%;
     padding: 18px 43px 18px 44px;
