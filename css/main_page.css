@@ -11,14 +11,15 @@
 }
 
 .top-block__title {
-    font: 50px/1.02 "Lora", serif;
+    font: 400 50px/1.02 "Lora", serif;
     letter-spacing: 2px;
     margin: 0;
 }
 
 .top-block__subtitle {
+    margin: 20px 0 31px;
     color: rgba(255, 255, 255, 0.63);
-    font: 17px/1.18 "Oxygen", sans-serif;
+    font: 400 17px/1.18 "Oxygen", sans-serif;
 }
 
 .top-block__button {
@@ -29,17 +30,19 @@
     border-radius: 3px;
     border: 0;
     color: #FFFFFF;
-    font: 13px/1.54 "Oxygen", sans-serif;
+    font: 400 13px/1.54 "Oxygen", sans-serif;
 }
 
 .tags {
     display: flex;
+    flex-flow: wrap;
     justify-content: space-around;
     align-items: center;
+    box-sizing: border-box;
     width: 100%;
-    height: 65px;
+    padding: 22.5px 17%;
     background: #FFFFFF;
-    font: 14px/1.43 "Lora", serif;
+    font: 400 14px/1.43 "Lora", serif;
 }
 
 .tags__link {
@@ -49,90 +52,117 @@
 
 .featured-posts {
     display: flex;
-    flex-flow: column wrap;
-    align-items: center;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0 17.36%;
     background: #F7F7F7;
-    border-radius: 3px;
-    margin: 0;
 }
 
 .featured-posts__title {
+    flex: 1 0 auto;
     text-align: center;
-    width: 20%;
+    max-width: 188px;
+    width: 100%;
+    margin: 60px 100% 23px;
+    padding: 0 0 16px;
     border-bottom: 1px solid #DEDEDE;
     color: #2E2E2E;
-    font: 20px/1.35 "Oxygen", sans-serif;
+    font: 400 20px/1.35 "Oxygen", sans-serif;
 }
 
-.featured-posts-post {
-    width: 460px;
+.featured-post {
+    display: flex; 
+    flex-flow: column wrap;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    max-width: 460px;
+    width: 100%;
     height: 280px;
+    margin: 0 10px;
+    padding: 0 20px 15px;
+    border-radius: 3px;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
-.featured-posts-post_image_the-road-ahead {
+.featured-post_image_the-road-ahead {
     background-image: url(../images/posts/the_road_ahead.png);
     background-size: cover;
 }
 
-.featured-posts-post_image_from-top-down {
+.featured-post_image_from-top-down {
     background-image: url(../images/posts/from_top_down.png);
     background-size: cover;
 }
 
-.featured-posts-post__title {
-    font: 27px/1.11 "Lora", serif;
-    margin: 0 4%;
+.featured-post__title {
+    margin: 0 0 6px;
+    font: 400 27px/1.11 "Lora", serif;
 }
 
-.featured-posts-post__subtitle {
-    font: 14px/1.79 "Oxygen", sans-serif;
+.featured-post__subtitle {
+    font: 400 14px/1.79 "Oxygen", sans-serif;
     color: rgba(255, 255, 255, 0.7);
-    margin: 0 4%;
 }
 
-.featured-posts-post-info {
+.featured-post-info {
+    display: flex;
+    flex-flow: wrap;
+    margin: 12px 0 0;
+    align-items: center;
     width: 100%;
 }
 
-.featured-posts-post-info__author-image {
-    width: 26px;
+.featured-post-info__author-image {
+    max-width: 26px;
+    width: 100%;
     height: 26px;
     color: rgba(255, 255, 255, 0.7);
-    margin: 0 0 0 4%;
+    border-radius: 50%;
 }
 
-.featured-posts-post-info__author {
-    font: 12px/2.92 "Oxygen", sans-serif;
+.featured-post-info__author {
+    flex: 1 0 auto;
+    font: 400 12px/2.92 "Oxygen", sans-serif;
     color: rgba(255, 255, 255, 0.7);
-    margin: 0 2%;
+    margin: 0 0 0 10px;
 }
 
-.featured-posts-post-info__date {
-    font: 12px/2.92 "Oxygen", sans-serif;
+.featured-post-info__date {
+    font: 400 12px/2.92 "Oxygen", sans-serif;
     color: rgba(255, 255, 255, 0.7);
-    margin: 0 4%;
 }
 
 .most-recent {
-    padding: 60px 17% 7px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0 17.36% 95px;
     background: #F7F7F7;
 }
 
 .most-recent__title {
+    flex: 1 0 auto;
     text-align: center;
-    width: 20%;
+    max-width: 188px;
+    width: 100%;
+    margin: 67px 100% 10px;
     padding: 0 0 16px;
-    margin: 0 41% 23px;
     border-bottom: 1px solid #DEDEDE;
     color: #2E2E2E;
-    font: 20px/1.35 "Oxygen", sans-serif;
+    font: 400 20px/1.35 "Oxygen", sans-serif;
 }
 
 .most-recent-post {
-    width: 296px;
-    height: 291px;
+    display: flex;
+    flex-flow: column wrap;
+    text-align: stretch;
+    max-width: 296px;
+    width: 100%;
+    min-height: 291px;
+    margin: 12px 12px 13px;
     background: #FFFFFF;
+    cursor: pointer;
 }
 
 .most-recent-post__image {
@@ -141,20 +171,25 @@
 }
 
 .most-recent-post__title {
-    font: 16px/1.31 "Lora", serif;
+    font: 400 16px/1.31 "Lora", serif;
+    margin: 14px 17px 7px;
     color: #101315;
-    margin: 5% 0 0 4%;
 }
 
 .most-recent-post__subtitle {
-    width: 100%;
-    font: 13px/1.46 "Oxygen", sans-serif;
+    flex: 1 0 auto;
+    margin: 0 17px;
+    font: 400 13px/1.46 "Oxygen", sans-serif;
     color: #7A7A7A;
-    padding: 2% 0 11% 4%;
 }
 
 .most-recent-post-info {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     width: 100%;
+    margin: 12px 0 0 0;
+    padding: 7px 13px 6px;
     background: #FCFCFC;
     border-top: 1px solid #EFEFEF;
 }
@@ -162,17 +197,17 @@
 .most-recent-post-info__author-image {
     width: 26px;
     height: 26px;
-    margin: 4% 0 0 4%;
+    border-radius: 50%;
 }
 
 .most-recent-post-info__author {
-    font: 11px/3.18 "Oxygen", sans-serif;
+    flex: 1 0 auto;
+    font: 400 11px/3.18 "Oxygen", sans-serif;
     color: #999999;
-    margin: 4% 0 0 3%;
+    margin: 0 0 0 10px;
 }
 
 .most-recent-post-info__date {
-    font: 12px/3.18 "Oxygen", sans-serif;
+    font: 400 12px/3.18 "Oxygen", sans-serif;
     color: #999999;
-    margin: 4% 4% 0 3%;
 }
