@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Let's do it together</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/main_page.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="page">
+    <header class="heading">
+      <span class="heading__logo">{{ .Title }}</span>
+      <nav class="heading__nav">
+        <a href="/home" class="heading__nav-link">HOME</a>
+        <a href="#" class="heading__nav-link">CATEGORIES</a>
+        <a href="#" class="heading__nav-link">ABOUT</a>
+        <a href="#" class="heading__nav-link">CONTACT</a>
+      </nav>
+    </header>
+    <div class="top-block">
+      <h2 class="top-block__title">Let's do it together.</h2>
+      <p class="top-block__subtitle">We travel the world in search of stories. Come along for the ride.</p>
+      <button class="top-block__button">View Latest Posts</button>
+    </div>
+    <div class="tags">
+      <a href="#" class="tags__link">Nature</a>
+      <a href="#" class="tags__link">Photography</a>
+      <a href="#" class="tags__link">Relaxation</a>
+      <a href="#" class="tags__link">Vacation</a>
+      <a href="#" class="tags__link">Travel</a>
+      <a href="#" class="tags__link">Adventure</a>
+    </div>
+    <section class="featured-posts">
+      <h2 class="featured-posts__title">Featured Posts</h2>
+      {{ range .FeaturedPosts }}
+        <div class="featured-post {{ .ImgModifier }}">
+          <span class="featured-post__title">{{ .Title }}</span>
+          <span class="featured-post__subtitle">{{ .Subtitle }}</span>
+          <div class="featured-post-info">
+            <img src="{{ .AuthorImg }}" alt="{{ .Author }}" class="featured-post-info__author-image" />
+            <span class="featured-post-info__author">{{ .Author }}</span>
+            <span class="featured-post-info__date">{{ .PublishDate }}</span>
+          </div>
+        </div>
+      {{ end }}
+    </section>
+    <section class="most-recent">
+      <h2 class="most-recent__title">Most Recent</h2>
+      {{ range .MostRecent }}
+        <div class="most-recent-post">
+          <img src="{{ .Img }}" class="most-recent-post__image" />
+          <span class="most-recent-post__title">{{ .Title }}</span>
+          <span class="most-recent-post__subtitle">{{ .Subtitle }}</span>
+          <div class="most-recent-post-info">
+            <img src="{{ .AuthorImg }}" alt="{{ .Author }}" class="most-recent-post-info__author-image" />
+            <span class="most-recent-post-info__author">{{ .Author }}</span>
+            <span class="most-recent-post-info__date">{{ .PublishDate }}</span>
+          </div>
+        </div>
+      {{ end }}
+    </section>
+    <div class="bottom-block">
+      <div class="mailing">
+        <h2 class="mailing__title">Stay in Touch</h2>
+        <form action="#" class="mailing__form">
+          <input type="text" name="user-email" placeholder="Enter your email address" class="mailing-form__email" />
+          <input type="submit" value="Submit" class="mailing-form__submit" />
+        </form>
+      </div>
+      <footer class="basement">
+        <span class="basement__logo">Escape.</span>
+        <nav class="basement__nav">
+          <a href="./index.html" class="basement__nav-link">HOME</a>
+          <a href="#" class="basement__nav-link">CATEGORIES</a>
+          <a href="#" class="basement__nav-link">ABOUT</a>
+          <a href="#" class="basement__nav-link">CONTACT</a>
+        </nav>
+      </footer>
+    </div>
+  </body>
+
+</html>

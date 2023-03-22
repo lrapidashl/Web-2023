@@ -5,7 +5,7 @@
     justify-content: center;
     width: 100%;
     height: 500px;    
-    background: url(../images/top_block_image.jpg);
+    background: url(../img/top_block_image.jpg);
     background-size: cover;
     color: #FFFFFF;
 }
@@ -86,12 +86,12 @@
 }
 
 .featured-post_image_the-road-ahead {
-    background-image: url(../images/posts/the_road_ahead.png);
+    background-image: url(../img/the_road_ahead.png);
     background-size: cover;
 }
 
 .featured-post_image_from-top-down {
-    background-image: url(../images/posts/from_top_down.png);
+    background-image: url(../img/from_top_down.png);
     background-size: cover;
 }
 
