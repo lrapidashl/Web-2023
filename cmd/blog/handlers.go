@@ -19,6 +19,7 @@ type featuredPostData struct {
 	Author      string
 	AuthorImg   string
 	PublishDate string
+	PostLink    string
 }
 
 type mostRecentData struct {
@@ -44,7 +45,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		MostRecent:    mostRecent(),
 	}
 
-	err = ts.Execute(w, data) // Заставляем шаблонизатор вывести шаблон в тело ответа
+	err = ts.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", 500)
 		log.Println(err.Error())
@@ -60,7 +61,7 @@ func post(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = ts.Execute(w, nil) // Заставляем шаблонизатор вывести шаблон в тело ответа
+	err = ts.Execute(w, nil)
 	if err != nil {
 		http.Error(w, "Internal Server Error", 500)
 		log.Println(err.Error())
@@ -75,16 +76,18 @@ func featuredPosts() []featuredPostData {
 			Subtitle:    "The road ahead might be paved - it might not be.",
 			ImgModifier: "featured-post_image_the-road-ahead",
 			Author:      "Mat Vogels",
-			AuthorImg:   "assets/img/Mat_Vogels.png",
+			AuthorImg:   "static/img/Mat_Vogels.png",
 			PublishDate: "September 25, 2015",
+			PostLink:    "/post",
 		},
 		{
 			Title:       "From Top Down",
 			Subtitle:    "Once a year, go someplace you’ve never been before.",
 			ImgModifier: "featured-post_image_from-top-down",
 			Author:      "William Wong",
-			AuthorImg:   "assets/img/William_Wong.png",
+			AuthorImg:   "static/img/William_Wong.png",
 			PublishDate: "September 25, 2015",
+			PostLink:    "#",
 		},
 	}
 }
@@ -94,49 +97,49 @@ func mostRecent() []mostRecentData {
 		{
 			Title:       "Still Standing Tall",
 			Subtitle:    "Life begins at the end of your comfort zone.",
-			Img:         "assets/img/still_standing_tall.png",
+			Img:         "static/img/still_standing_tall.png",
 			Author:      "William Wong",
-			AuthorImg:   "assets/img/William_Wong.png",
+			AuthorImg:   "static/img/William_Wong.png",
 			PublishDate: "9/25/2015",
 		},
 		{
 			Title:       "Sunny Side Up",
 			Subtitle:    "No place is ever as bad as they tell you it’s going to be.",
-			Img:         "assets/img/sunny_side_up.png",
+			Img:         "static/img/sunny_side_up.png",
 			Author:      "Mat Vogels",
-			AuthorImg:   "assets/img/Mat_Vogels.png",
+			AuthorImg:   "static/img/Mat_Vogels.png",
 			PublishDate: "9/25/2015",
 		},
 		{
 			Title:       "Water Falls",
 			Subtitle:    "We travel not to escape life, but for life not to escape us.",
-			Img:         "assets/img/water_falls.png",
+			Img:         "static/img/water_falls.png",
 			Author:      "Mat Vogels",
-			AuthorImg:   "assets/img/Mat_Vogels.png",
+			AuthorImg:   "static/img/Mat_Vogels.png",
 			PublishDate: "9/25/2015",
 		},
 		{
 			Title:       "Througt the Mist",
 			Subtitle:    "Travel makes you see what a tiny place you occupy in the world.",
-			Img:         "assets/img/through_the_mist.png",
+			Img:         "static/img/through_the_mist.png",
 			Author:      "William Wong",
-			AuthorImg:   "assets/img/William_Wong.png",
+			AuthorImg:   "static/img/William_Wong.png",
 			PublishDate: "9/25/2015",
 		},
 		{
 			Title:       "Awaken Early",
 			Subtitle:    "Not all those who wander are lost.",
-			Img:         "assets/img/awaken_early.png",
+			Img:         "static/img/awaken_early.png",
 			Author:      "Mat Vogels",
-			AuthorImg:   "assets/img/Mat_Vogels.png",
+			AuthorImg:   "static/img/Mat_Vogels.png",
 			PublishDate: "9/25/2015",
 		},
 		{
 			Title:       "Try it Always",
 			Subtitle:    "The world is a book, and those who do not travel read only one page.",
-			Img:         "assets/img/try_it_always.png",
+			Img:         "static/img/try_it_always.png",
 			Author:      "Mat Vogels",
-			AuthorImg:   "assets/img/Mat_Vogels.png",
+			AuthorImg:   "static/img/Mat_Vogels.png",
 			PublishDate: "9/25/2015",
 		},
 	}

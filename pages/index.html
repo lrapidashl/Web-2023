@@ -4,8 +4,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Let's do it together</title>
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/main_page.css" />
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/main_page.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
   </head>
 
@@ -35,7 +35,7 @@
     <section class="featured-posts">
       <h2 class="featured-posts__title">Featured Posts</h2>
       {{ range .FeaturedPosts }}
-        <div class="featured-post {{ .ImgModifier }}">
+        <div onclick="location.href='{{ .PostLink }}'" class="featured-post {{ .ImgModifier }}">
           <span class="featured-post__title">{{ .Title }}</span>
           <span class="featured-post__subtitle">{{ .Subtitle }}</span>
           <div class="featured-post-info">
@@ -72,7 +72,7 @@
       <footer class="basement">
         <span class="basement__logo">Escape.</span>
         <nav class="basement__nav">
-          <a href="./index.html" class="basement__nav-link">HOME</a>
+          <a href="/home" class="basement__nav-link">HOME</a>
           <a href="#" class="basement__nav-link">CATEGORIES</a>
           <a href="#" class="basement__nav-link">ABOUT</a>
           <a href="#" class="basement__nav-link">CONTACT</a>
