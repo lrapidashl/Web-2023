@@ -24,7 +24,7 @@
     display: flex;
     justify-content: space-around;
     flex-flow: wrap; 
-    width: 26%;
+    gap: 40px;
     font: 400 12px/1.86 "Oxygen", sans-serif;
     letter-spacing: 0.6px;
     text-transform: uppercase;

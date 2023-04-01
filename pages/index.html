@@ -35,7 +35,7 @@
     <section class="featured-posts">
       <h2 class="featured-posts__title">Featured Posts</h2>
       {{ range .FeaturedPosts }}
-        <div onclick="location.href='{{ .PostLink }}'" class="featured-post {{ .ImgModifier }}">
+        <div class="featured-post {{ .ImgModifier }}">
           <span class="featured-post__title">{{ .Title }}</span>
           <span class="featured-post__subtitle">{{ .Subtitle }}</span>
           <div class="featured-post-info">
