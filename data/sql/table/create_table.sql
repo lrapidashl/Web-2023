@@ -9,6 +9,5 @@ CREATE TABLE post
     image_url VARCHAR(255),
     featured TINYINT DEFAULT 0,
     PRIMARY KEY(post_id)
-)CHARACTER SET = utf8mb4
-COLLATE utf8mb4_unicode_ci
+) CHARACTER SET = utf8mb4 COLLATE utf8mb4_unicode_ci
 ;  
