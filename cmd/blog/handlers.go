@@ -21,7 +21,6 @@ type featuredPostData struct {
 	Author      string `db:"author"`
 	AuthorImg   string `db:"author_url"`
 	PublishDate string `db:"publish_date"`
-	//PostLink    string `db:"title"`
 }
 
 type mostRecentData struct {
@@ -35,15 +34,15 @@ type mostRecentData struct {
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		featuredPosts, err := featuredPosts(db)
+		featuredPostsData, err := featuredPosts(db)
 		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
 			return
 		}
-		mostRecentPosts, err := mostRecent(db)
+		mostRecentData, err := mostRecent(db)
 		if err != nil {
-			http.Error(w, "Internal Server Error", 500) // В случае ошибки парсинга - возвращаем 500
+			http.Error(w, "Internal Server Error", 500)
 			log.Println(err)
 			return
 		}
@@ -57,8 +56,8 @@ func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 
 		data := indexPage{
 			Title:         "Escape.",
-			FeaturedPosts: featuredPosts,
-			MostRecent:    mostRecentPosts,
+			FeaturedPosts: featuredPostsData,
+			MostRecent:    mostRecentData,
 		}
 
 		err = ts.Execute(w, data)
