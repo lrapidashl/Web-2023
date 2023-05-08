@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/login.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="page">
+    <div class="message">
+      <div class="message__logo">
+        <span>Escape.</span>
+        <span class="message__sublogo">author</span>
+      </div>
+      <span class="message__description">Log in to start creating</span>
+    </div>
+    <div class="logination">
+      <h2 class="logination__title">Log In</h2>
+      <form method="post" action="#" class="logination__login-form">
+        <div class="login-form__form-element">
+          <span class="login-form__inscription">Email</span>
+          <input type="text" name="email" class="login-form__text-input"/>
+        </div>
+        <div class="login-form__form-element">
+          <span class="login-form__inscription">Password</span>
+          <div class="login-form__password-field">
+            <input type="password" name="password" class="login-form__text-input" />
+            <img src="/static/img/password_eye.svg" class="login-form__password-eye">
+          </div>
+        </div>
+        <button type="submit" class="login-form__submit-button">Log In</button>
+      </form>
+    </div>
+  </body>
+
+</html>

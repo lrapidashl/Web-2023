@@ -1,0 +1,103 @@
+.page {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    background: linear-gradient(0deg, rgba(66, 70, 73, 0.4), rgba(66, 70, 73, 0.4)), url(../img/login_background.jpg);
+    background-size: cover;
+}
+
+.message {
+    display: flex;
+    flex-flow: column;
+    gap: 16px;
+    margin: 310px 0 0 16%;
+}
+
+.message__logo {
+    display: flex;
+    align-items: baseline;
+    font: 400 45.5px "Lora", serif;
+    color: #FFFFFF;
+}
+
+.message__sublogo {
+    font: 400 24.5px "Oxygen", sans-serif;
+    color: #FFFFFF;
+}
+
+.message__description {
+    font: 400 17px/1.47 "Oxygen", sans-serif;
+    color: #FFFFFF;
+}
+
+.logination {
+    display: flex;
+    flex-flow: column;
+    gap: 50px;
+    box-sizing: border-box;
+    padding: 56px 40px 0;
+    margin: 9% 121px 0 0;
+    width: 480px;
+    height: 521.5px;
+    background: #FFFFFF;
+    border-radius: 3px;
+}
+
+.logination__title {
+    margin: 0;
+    font: 400 34px/1.18 "Lora", serif;
+    color: #000000;
+}
+
+.logination__login-form {
+    display: flex;
+    flex-flow: column;
+    gap: 40px;
+}
+
+.login-form__form-element {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+
+.login-form__inscription {
+    font: 400 12px/1.33 "Oxygen", sans-serif;
+    color: #7A7A7A; 
+}
+
+.login-form__text-input {
+    box-sizing: border-box;
+    padding: 8px 4px;
+    width: 100%;
+    height: 40px;
+    background: #FFFFFF;
+    border: none;
+    border-bottom: 1px solid #EAEAEA;
+    font: 400 16px/1.5 "Oxygen", sans-serif;
+    color: #2E2E2E;
+}
+
+.login-form__password-field {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.login-form__password-eye {
+    position: absolute;
+    right: 4px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.login-form__submit-button {
+    width: 93px;
+    height: 48px;
+    background: #DD783F;
+    border: none;
+    border-radius: 3px;
+    font: 400 16px/1.5 "Oxygen", sans-serif;
+    color: #FFFFFF;
+    cursor: pointer;
+}

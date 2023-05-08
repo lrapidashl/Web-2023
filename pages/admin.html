@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <script src="/static/js/admin.js" defer></script>
+    <link rel="stylesheet" href="/static/css/admin.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="page">
+    <header class="heading">
+      <div class="heading__logo">
+        <span>Escape.</span>
+        <span class="heading__sublogo">author</span>
+      </div>
+      <div class="heading__avatar">
+        <span>N</span>
+      </div>
+      <img src="/static/img/log_out.svg" class="heading__log-out" />
+    </header>
+    <form method="post" enctype="multipart/form-data" class="admin-form">
+      <div class="new-post">
+        <div>
+          <h1 class="new-post__title">New Post</h1>
+          <h2 class="new-post__subtitle">Fill out the form bellow and publish your article</h2>
+        </div>
+        <div class="new-post__publish-button">Publish</div>
+      </div>
+      <div class="main-info">
+        <h2 class="main-info__title">Main Information</h2>
+        <div class="main-info__working-field">
+          <div class="working-field__add-post-form">
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Title</span>
+              <input type="text" name="title" value="New Post" class="add-post-form__text-input" />
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Short description</span>
+              <input type="text" name="subtitle" value="Please, enter any description" class="add-post-form__text-input"/>
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Author name</span>
+              <input type="text" name="author_name" class="add-post-form__text-input"/>
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Author Photo</span>
+              <div class="add-post-form__upload-avatar">
+                <label for="upload-avatar__file-field" class="upload-avatar__author-avatar-img">
+                  <image src="/static/img/upload_image.svg" />
+                </label>
+                <label for="upload-avatar__file-field" class="upload-avatar__inscription">Upload</label> 
+                <div class="add-post-form__uploaded-img-buttons hidden">
+                  <label for="upload-avatar__file-field" class="uploaded-img-buttons__upload-new">
+                      <img src="/static/img/upload_image.svg" class="upload-new__img" />
+                      <span class="upload-new__inscription">Upload New</span>
+                  </label>
+                  <div class="uploaded-img-buttons__remove">
+                    <img src="/static/img/remove_image.svg" class="remove__img" />
+                    <span class="remove__inscription">Remove</span>
+                  </div>
+                </div>
+                <input type="file" name="author_avatar" accept="image/*" class="hidden" id="upload-avatar__file-field" />
+              </div>
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Publish Date</span>
+              <input type="date" name="publish_date" class="add-post-form__text-input"/>
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Article image</span>
+              <div class="add-post-form__upload-post-img">
+                <label for="upload-page-img__file-field" class="upload-post-img__button">
+                  <image src="/static/img/upload_image.svg" />
+                  <span class="upload-post-img__inscription">Upload</span>
+                </label>
+                <input type="file" name="page_image" accept="image/*" class="hidden" id="upload-page-img__file-field" />
+              </div>
+              <div class="add-post-form__uploaded-img-buttons hidden">
+                <label for="upload-page-img__file-field" class="uploaded-img-buttons__upload-new">
+                  <img src="/static/img/upload_image.svg" class="upload-new__img" />
+                  <span class="upload-new__inscription">Upload New</span>
+                </label>
+                <div class="uploaded-img-buttons__remove">
+                  <img src="/static/img/remove_image.svg" class="remove__img" />
+                  <span class="remove__inscription">Remove</span>
+                </div>
+              </div>
+              <span class="add-post-form__inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
+            </div>
+            <div class="add-post-form__form-element">
+              <span class="add-post-form__inscription">Post card image</span>
+              <div class="add-post-form__upload-post-img">
+                <label for="upload-card-img__file-field" class="upload-post-img__button upload-post-img__button_card">
+                  <image src="/static/img/upload_image.svg" />
+                  <span class="upload-post-img__inscription">Upload</span>
+                </label>
+                <input type="file" name="card_image" accept="image/*" class="hidden" id="upload-card-img__file-field" />
+              </div>
+              <div class="add-post-form__uploaded-img-buttons hidden">
+                <label for="upload-card-img__file-field" class="uploaded-img-buttons__upload-new">
+                  <img src="/static/img/upload_image.svg" class="upload-new__img" />
+                  <span class="upload-new__inscription">Upload New</span>
+                </label>
+                <div class="uploaded-img-buttons__remove">
+                  <img src="/static/img/remove_image.svg" class="remove__img" />
+                  <span class="remove__inscription">Remove</span>
+                </div>
+              </div>
+              <span class="add-post-form__inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
+            </div>
+          </div>
+          <div class="working-field__preview">
+            <div class="working-field__preview-block">
+              <span class="preview-block__title">Article preview</span>
+              <div class="preview-block__page">
+                <div class="preview-block__page-area">
+                  <div class="page-area__top-block">
+                    <div class="page-area-top-block__menu-circle"></div>
+                    <div class="page-area-top-block__menu-circle"></div>
+                    <div class="page-area-top-block__menu-circle"></div>
+                  </div>
+                  <span class="page-area__title">New Post</span>
+                  <span class="page-area__subtitle">Please, enter any description</span>
+                  <div class="page-area__img"></div>
+                </div>
+                <div class="preview-block__horizontal-gradient"></div>
+                <div class="preview-block__vertical-gradient"></div>
+              </div>
+            </div>
+            <div class="working-field__preview-block">
+              <span class="preview-block__title">Post card preview</span>
+              <div class="preview-block__card">
+                <div class="preview-block__card-area">
+                  <div class="card-area__img"></div>
+                  <span class="card-area__title">New Post</span>
+                  <span class="card-area__subtitle">Please, enter any description</span>    
+                  <div class="card-area__info">
+                    <div class="card-area__author-avatar"></div>
+                    <span class="card-area__author-name">Enter author name</span>
+                    <span class="card-area__publish-date">4/19/2023</span>
+                  </div>
+                </div>
+                <div class="preview-block__horizontal-gradient"></div>
+                <div class="preview-block__vertical-gradient"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <h2 class="content__title">Content</h2>
+        <span class="content__inscription">Post content (plain text)</span>
+        <textarea name="title" placeholder="Type anything you want ..." class="content__text-area"></textarea>
+      </div>
+    </form>
+  </body>
+
+</html>
