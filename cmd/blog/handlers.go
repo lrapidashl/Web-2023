@@ -2,9 +2,13 @@ package main
 
 import (
 	"database/sql"
+	"encoding/base64"
+	"encoding/json"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -45,6 +49,18 @@ type postData struct {
 	Subtitle string `db:"subtitle"`
 	Img      string `db:"image_url"`
 	Content  string `db:"content"`
+}
+
+type createPostRequest struct {
+	Title         string `json:"title"`
+	Subtitle      string `json:"subtitle"`
+	Author        string `json:"author_name"`
+	AuthorImgName string `json:"author_avatar"`
+	AuthorImg     string `json:"author_avatar_file"`
+	PublishDate   string `json:"publish_date"`
+	ImgName       string `json:"page_image"`
+	Img           string `json:"page_image_file"`
+	Content       string `json:"content"`
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -244,4 +260,104 @@ func postByID(db *sqlx.DB, postID int) (postData, error) {
 	}
 
 	return post, nil
+}
+
+func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		reqData, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal server error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var req createPostRequest
+
+		err = json.Unmarshal(reqData, &req)
+		if err != nil {
+			http.Error(w, "Internal server error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		err = savePost(db, req)
+		if err != nil {
+			http.Error(w, "Internal server error", 500)
+			log.Println(err.Error())
+			return
+		}
+	}
+}
+
+func savePost(db *sqlx.DB, req createPostRequest) error {
+	const query = `
+		INSERT INTO post
+		(
+			title,
+			subtitle,
+			author,
+			author_url,
+			publish_date,
+			image_url,
+			content
+		)
+		VALUES
+		(
+			?,
+			?,
+			?,
+			?,
+			?,
+			?,
+			?
+		)
+	`
+
+	req.AuthorImgName = "static/img/" + req.AuthorImgName
+	req.ImgName = "static/img/" + req.ImgName
+
+	if req.ImgName != "" {
+		img, err := base64.StdEncoding.DecodeString(req.Img)
+		if err != nil {
+			return err
+		}
+
+		file, err := os.Create(req.ImgName)
+		if err != nil {
+			return err
+		}
+
+		_, err = file.Write(img)
+		if err != nil {
+			return err
+		}
+	}
+
+	if req.AuthorImgName != "" {
+		img, err := base64.StdEncoding.DecodeString(req.AuthorImg)
+		if err != nil {
+			return err
+		}
+
+		file, err := os.Create(req.AuthorImgName)
+		if err != nil {
+			return err
+		}
+
+		_, err = file.Write(img)
+		if err != nil {
+			return err
+		}
+	}
+
+	_, err := db.Exec(
+		query,
+		req.Title,
+		req.Subtitle,
+		req.Author,
+		req.AuthorImgName,
+		req.PublishDate,
+		req.ImgName,
+		req.Content)
+	return err
 }

@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	port         = ":3000"
+	port         = "localhost:3000"
 	dbDriverName = "mysql"
 )
 
@@ -28,6 +28,7 @@ func main() {
 	mux.HandleFunc("/home", index(dbx))
 	mux.HandleFunc("/post/{postID}", post(dbx))
 	mux.HandleFunc("/admin", admin)
+	mux.HandleFunc("/api/post", createPost(dbx)).Methods(http.MethodPost)
 	mux.HandleFunc("/login", login)
 
 	mux.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))

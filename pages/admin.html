@@ -20,7 +20,7 @@
       </div>
       <img src="/static/img/log_out.svg" class="heading__log-out" />
     </header>
-    <form method="post" enctype="multipart/form-data" class="admin-form">
+    <form method="post" enctype="multipart/form-data">
       <div class="new-post">
         <div>
           <h1 class="new-post__title">New Post</h1>
@@ -34,11 +34,11 @@
           <div class="working-field__add-post-form">
             <div class="add-post-form__form-element">
               <span class="add-post-form__inscription">Title</span>
-              <input type="text" name="title" value="New Post" class="add-post-form__text-input" />
+              <input type="text" name="title" value="New Post" class="add-post-form__text-input add-post-form__text-input_filled" />
             </div>
             <div class="add-post-form__form-element">
               <span class="add-post-form__inscription">Short description</span>
-              <input type="text" name="subtitle" value="Please, enter any description" class="add-post-form__text-input"/>
+              <input type="text" name="subtitle" value="Please, enter any description" class="add-post-form__text-input add-post-form__text-input_filled"/>
             </div>
             <div class="add-post-form__form-element">
               <span class="add-post-form__inscription">Author name</span>
@@ -87,7 +87,7 @@
                   <span class="remove__inscription">Remove</span>
                 </div>
               </div>
-              <span class="add-post-form__inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
+              <span class="add-post-form__inscription" id="add-post-form__page-inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
             </div>
             <div class="add-post-form__form-element">
               <span class="add-post-form__inscription">Post card image</span>
@@ -108,7 +108,7 @@
                   <span class="remove__inscription">Remove</span>
                 </div>
               </div>
-              <span class="add-post-form__inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
+              <span class="add-post-form__inscription" id="add-post-form__card-inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
             </div>
           </div>
           <div class="working-field__preview">
