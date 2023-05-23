@@ -33,12 +33,12 @@
 .logination {
     display: flex;
     flex-flow: column;
-    gap: 50px;
+    gap: 40px;
     box-sizing: border-box;
     padding: 56px 40px 0;
-    margin: 9% 121px 0 0;
+    margin: 111px 121px 0 0;
     width: 480px;
-    height: 521.5px;
+    height: 560px;
     background: #FFFFFF;
     border-radius: 3px;
 }
@@ -47,6 +47,30 @@
     margin: 0;
     font: 400 34px/1.18 "Lora", serif;
     color: #000000;
+}
+
+.logination__error-message {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 0 0 0 12px;
+    width: 100%;
+    gap: 12px;
+    background: #FFEBEA;
+    border-left: 2px solid #E86961;
+    border-radius: 5px;
+    transition: min-height 0.3s linear;
+}
+
+.logination__error-message_hidden {
+    min-height: 0;
+    transition: min-height 0.3s linear;
+}
+
+.error-message__inscription {
+    font: 400 14px/1.43 "Oxygen", sans-serif;
+    color: #2E2E2E;
 }
 
 .logination__login-form {
@@ -78,6 +102,28 @@
     color: #2E2E2E;
 }
 
+.login-form__text-input_filled {
+    background: #F7F7F7;
+    border: none;
+    border-bottom: 1px solid #2E2E2E;
+    border-radius: 5px 5px 0 0;
+}
+
+.login-form__text-input_error {
+    border-bottom: 1px solid #E86961;
+}
+
+.login-form__text-input:focus {
+    outline: none;
+    background: #FFFFFF;
+    border-bottom: 2px solid #2E2E2E;
+}
+
+.login-form__error {
+    font: 400 12px/1.33 "Oxygen", sans-serif;
+    color: #E86961;
+}
+
 .login-form__password-field {
     display: flex;
     align-items: center;
@@ -92,6 +138,8 @@
 }
 
 .login-form__submit-button {
+    box-sizing: border-box;
+    padding: 12px 24px;
     width: 93px;
     height: 48px;
     background: #DD783F;
@@ -100,4 +148,8 @@
     font: 400 16px/1.5 "Oxygen", sans-serif;
     color: #FFFFFF;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

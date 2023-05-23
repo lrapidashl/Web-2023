@@ -18,20 +18,26 @@
       <span class="message__description">Log in to start creating</span>
     </div>
     <div class="logination">
-      <h2 class="logination__title">Log In</h2>
-      <form method="post" action="/admin" class="logination__login-form">
+      <h2 class="logination__title">Log In</h2>   
+      <div class="logination__error-message logination__error-message_hidden">
+        <img src="/static/img/error_msg_image.svg" class="hidden"/>
+        <span class="error-message__inscription hidden"></span>
+      </div>
+      <form method="post" class="logination__login-form">
         <div class="login-form__form-element">
           <span class="login-form__inscription">Email</span>
-          <input type="text" name="email" class="login-form__text-input"/>
+          <input type="text" name="text" class="login-form__text-input" id="login-form__email-input" />
+          <span class="login-form__error hidden" id="login-form__email-error"></span>
         </div>
         <div class="login-form__form-element">
           <span class="login-form__inscription">Password</span>
           <div class="login-form__password-field">
-            <input type="password" name="password" class="login-form__text-input" />
+            <input type="password" name="password" class="login-form__text-input" id="login-form__password-input" />
             <img src="/static/img/password_eye.svg" class="login-form__password-eye">
           </div>
+          <span class="login-form__error hidden" id="login-form__password-error"></span>
         </div>
-        <button type="submit" class="login-form__submit-button">Log In</button>
+        <div type="submit" class="login-form__submit-button">Log In</div>
       </form>
     </div>
   </body>

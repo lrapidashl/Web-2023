@@ -63,6 +63,15 @@ type createPostRequest struct {
 	Content       string `json:"content"`
 }
 
+type authRequest struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type authResponse struct {
+	Check string
+}
+
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		featuredPostsData, err := featuredPosts(db)
@@ -290,6 +299,17 @@ func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 }
 
 func savePost(db *sqlx.DB, req createPostRequest) error {
+	req.ImgName = "static/img/" + req.ImgName
+	req.AuthorImgName = "static/img/" + req.AuthorImgName
+	err := uploadImg(req.Img, req.ImgName)
+	if err != nil {
+		return err
+	}
+	err = uploadImg(req.AuthorImg, req.AuthorImgName)
+	if err != nil {
+		return err
+	}
+
 	const query = `
 		INSERT INTO post
 		(
@@ -313,44 +333,7 @@ func savePost(db *sqlx.DB, req createPostRequest) error {
 		)
 	`
 
-	req.AuthorImgName = "static/img/" + req.AuthorImgName
-	req.ImgName = "static/img/" + req.ImgName
-
-	if req.ImgName != "" {
-		img, err := base64.StdEncoding.DecodeString(req.Img)
-		if err != nil {
-			return err
-		}
-
-		file, err := os.Create(req.ImgName)
-		if err != nil {
-			return err
-		}
-
-		_, err = file.Write(img)
-		if err != nil {
-			return err
-		}
-	}
-
-	if req.AuthorImgName != "" {
-		img, err := base64.StdEncoding.DecodeString(req.AuthorImg)
-		if err != nil {
-			return err
-		}
-
-		file, err := os.Create(req.AuthorImgName)
-		if err != nil {
-			return err
-		}
-
-		_, err = file.Write(img)
-		if err != nil {
-			return err
-		}
-	}
-
-	_, err := db.Exec(
+	_, err = db.Exec(
 		query,
 		req.Title,
 		req.Subtitle,
@@ -358,6 +341,93 @@ func savePost(db *sqlx.DB, req createPostRequest) error {
 		req.AuthorImgName,
 		req.PublishDate,
 		req.ImgName,
-		req.Content)
+		req.Content,
+	)
 	return err
+}
+
+func uploadImg(imgFile string, imgName string) error {
+	if imgName != "static/img/" {
+		img, err := base64.StdEncoding.DecodeString(imgFile)
+		if err != nil {
+			return err
+		}
+
+		file, err := os.Create(imgName)
+		if err != nil {
+			return err
+		}
+
+		_, err = file.Write(img)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func auth(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		reqData, err := io.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Internal server error1", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var req authRequest
+
+		err = json.Unmarshal(reqData, &req)
+		if err != nil {
+			http.Error(w, "Internal server error2", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		check, err := checkUser(db)
+		if err != nil {
+			http.Error(w, "Internal server error3", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		var resp authResponse
+
+		if check {
+			resp.Check = "yes"
+		}
+		if !check {
+			resp.Check = "no"
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		err = json.NewEncoder(w).Encode(resp)
+		if err != nil {
+			http.Error(w, "Internal server error4", 500)
+			log.Println(err.Error())
+			return
+		}
+	}
+}
+
+func checkUser(db *sqlx.DB) (bool, error) {
+	const query = `
+		SELECT
+			email,
+			pass
+		FROM
+		 	auth
+		WHERE
+		  	post_id = ?
+	`
+
+	rows, err := db.Query(query)
+	if err != nil {
+		return false, err
+	}
+
+	for rows.Next() {
+		log.Println(rows)
+	}
+	return true, nil
 }
