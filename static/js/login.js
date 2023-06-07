@@ -71,28 +71,33 @@ async function logIn() {
             i.classList.remove("hidden");
         } 
     }
-    /*else {
-        const response = await fetch("/api/auth", {
+    else {
+        const inputValues = {
+            email: emailInput.value,
+            password: passwordInput.value,
+        }
+        const json = JSON.stringify(inputValues);
+        const response = await fetch("/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json;charset=utf-8"
             },
-            body: inputValues
+            body: json
         });
         if (response.ok) {
-            let authError = response.json().check;
-            if (authError === "no") {
-                formError.classList.remove("hidden");
-                formError.lastChild.previousSibling.innerHTML = "Email or password is incorrect.";
-            }
-            else {
-                window.location.href = "/admin"
+            window.location.href = "/admin";
+        }
+        else if (response.status === 401) {
+            formError.classList.remove("logination__error-message_hidden");
+            formError.lastChild.previousSibling.innerHTML = "Email or password is incorrect.";
+            for (i of formError.children) {
+                i.classList.remove("hidden");
             }
         }
         else {
-            alert("Ошибка HTTP: " + response.status);
+            alert("error HTTP: " + response.error);
         }
-    }*/
+    }
 
 }
 

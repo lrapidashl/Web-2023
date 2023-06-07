@@ -66,7 +66,7 @@
 										<img src="/static/img/upload_image.svg" class="upload-new__img" />
 										<span class="upload-new__inscription">Upload New</span>
 								</label>
-								<div class="uploaded-img-buttons__remove">
+								<div class="uploaded-img-buttons__remove" id="uploaded-avatar-buttons__remove">
 									<img src="/static/img/remove_image.svg" class="remove__img" />
 									<span class="remove__inscription">Remove</span>
 								</div>
@@ -94,34 +94,13 @@
 								<img src="/static/img/upload_image.svg" class="upload-new__img" />
 								<span class="upload-new__inscription">Upload New</span>
 							</label>
-							<div class="uploaded-img-buttons__remove">
+							<div class="uploaded-img-buttons__remove" id="uploaded-page-buttons__remove">
 								<img src="/static/img/remove_image.svg" class="remove__img" />
 								<span class="remove__inscription">Remove</span>
 							</div>
 						</div>
 						<span class="add-post-form__inscription" id="add-post-form__page-inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
             <span class="add-post-form__error hidden" id="add-post-form__page-img-error">Article image is required</span>
-					</div>
-					<div class="add-post-form__form-element">
-						<span class="add-post-form__inscription">Post card image</span>
-						<div class="add-post-form__upload-post-img">
-							<label for="upload-card-img__file-field" class="upload-post-img__button upload-post-img__button_card" id="upload-card-img__button">
-								<image src="/static/img/upload_image.svg" />
-								<span class="upload-post-img__inscription">Upload</span>
-							</label>
-							<input type="file" name="card_image" accept="image/*" class="hidden" id="upload-card-img__file-field" />
-						</div>
-						<div class="add-post-form__uploaded-img-buttons hidden" id="add-post-form__uploaded-card-img-buttons">
-							<label for="upload-card-img__file-field" class="uploaded-img-buttons__upload-new">
-								<img src="/static/img/upload_image.svg" class="upload-new__img" />
-								<span class="upload-new__inscription">Upload New</span>
-							</label>
-							<div class="uploaded-img-buttons__remove">
-								<img src="/static/img/remove_image.svg" class="remove__img" />
-								<span class="remove__inscription">Remove</span>
-							</div>
-						</div>
-						<span class="add-post-form__inscription" id="add-post-form__card-inscription">Size up to 10mb. Format: png, jpeg, gif.</span>
 					</div>
 				</div>
 				<div class="working-field__preview">
@@ -146,7 +125,7 @@
 						<span class="preview-block__title">Post card preview</span>
 						<div class="preview-block__card">
 							<div class="preview-block__card-area">
-								<div class="card-area__img"></div>
+								<div class="card-area__img" id="card-area__img"></div>
 								<span class="card-area__title">New Post</span>
 								<span class="card-area__subtitle">Please, enter any description</span>    
 								<div class="card-area__info">

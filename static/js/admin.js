@@ -4,6 +4,45 @@ const authorAvatarPreviewPost = document.querySelector(".card-area__author-avata
 const authorAvatarInscription = document.querySelector(".upload-avatar__inscription");
 const authorAvatarButtons = document.getElementById("add-post-form__uploaded-avatar-buttons");
 let base64AuthorAvatar = "";
+
+const pageImgInput = document.getElementById("upload-page-img__file-field");
+const pageImgPreview = document.getElementById("upload-page-img__button");
+const pageImgPreviewPost = document.querySelector(".page-area__img");
+const pageImgPreviewCard = document.getElementById("card-area__img");
+const pageImgInscription = document.getElementById("add-post-form__page-inscription");
+const pageImgButtons = document.getElementById("add-post-form__uploaded-page-img-buttons");
+let base64PageImg = "";
+
+const formError = document.querySelector(".new-post__error-message");
+const formSuccess = document.querySelector(".new-post__success-message");
+const titleError = document.getElementById("add-post-form__title-error");
+const subtitleError = document.getElementById("add-post-form__subtitle-error");
+const authorNameError = document.getElementById("add-post-form__author-name-error");
+const authorAvatarError = document.getElementById("add-post-form__author-avatar-error");
+const publishDateError = document.getElementById("add-post-form__publish-date-error");
+const pageImgError = document.getElementById("add-post-form__page-img-error");
+const contentError = document.querySelector(".content__error");
+const contentData = document.querySelector(".content__text-area");
+
+const titleInput = document.getElementById("add-post-form__title-input-field");
+const pageAreaTitle = document.querySelector(".page-area__title");
+const cardAreaTitle = document.querySelector(".card-area__title");
+
+const subtitleInput = document.getElementById("add-post-form__subtitle-input-field");
+const pageAreaSubtitle = document.querySelector(".page-area__subtitle");
+const cardAreaSubtitle = document.querySelector(".card-area__subtitle");
+
+const authorNameInput = document.getElementById("add-post-form__author-name-input-field");
+const cardAreaAuthorName = document.querySelector(".card-area__author-name");
+
+const publishDateInput = document.getElementById("add-post-form__publish-date-input-field");
+const cardAreaPublishDate = document.querySelector(".card-area__publish-date");
+
+const authorAvatarRemoveButton = document.getElementById("uploaded-avatar-buttons__remove");
+const pageImgRemoveButton = document.getElementById("uploaded-page-buttons__remove");
+const publishButton = document.querySelector(".new-post__publish-button");
+const logoutButton = document.querySelector(".heading__log-out");
+
 function previewAuthorAvatar() {
     const file = authorAvatarInput.files[0];
     
@@ -16,7 +55,9 @@ function previewAuthorAvatar() {
         }
         authorAvatarInscription.classList.add("hidden");
         authorAvatarButtons.classList.remove("hidden");
-        authorAvatarPreview.innerHTML = "";
+        for (i of authorAvatarPreview.children) {
+            i.classList.add("hidden");
+        }
         authorAvatarPreview.style.backgroundColor = "rgba(0, 0, 0, 0)";
         authorAvatarPreviewPost.style.backgroundColor = "rgba(0, 0, 0, 0)";
         authorAvatarPreview.style.border = "none";
@@ -26,7 +67,9 @@ function previewAuthorAvatar() {
 
 function removeAuthorAvatar() {
     authorAvatarInput.value = null;
-    authorAvatarPreview.innerHTML = '<image src="/static/img/upload_image.svg" />';
+    for (i of authorAvatarPreview.children) {
+        i.classList.remove("hidden");
+    }
     authorAvatarPreview.style.backgroundImage = "";
     authorAvatarPreviewPost.style.backgroundImage = "";
     authorAvatarPreview.style.backgroundColor = "#F7F7F7";
@@ -36,12 +79,6 @@ function removeAuthorAvatar() {
     authorAvatarButtons.classList.add("hidden");
 }
 
-const pageImgInput = document.getElementById("upload-page-img__file-field");
-const pageImgPreview = document.getElementById("upload-page-img__button");
-const pageImgPreviewPost = document.querySelector(".page-area__img");
-const pageImgInscription = document.getElementById("add-post-form__page-inscription");
-const pageImgButtons = document.getElementById("add-post-form__uploaded-page-img-buttons");
-let base64PageImg = "";
 function previewPageImg() {
     const file = pageImgInput.files[0];
     
@@ -51,12 +88,16 @@ function previewPageImg() {
             base64PageImg = reader.result.replace("data:", "").replace(/^.+,/, "");
             pageImgPreview.style.backgroundImage = "url(" + reader.result + ")";
             pageImgPreviewPost.style.backgroundImage = "url(" + reader.result + ")";
+            pageImgPreviewCard.style.backgroundImage = "url(" + reader.result + ")";
         }
         pageImgInscription.classList.add("hidden");
         pageImgButtons.classList.remove("hidden");
-        pageImgPreview.innerHTML = "";
+        for (i of pageImgPreview.children) {
+            i.classList.add("hidden");
+        }
         pageImgPreview.style.backgroundColor = "rgba(0, 0, 0, 0)";
         pageImgPreviewPost.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        pageImgPreviewCard.style.backgroundColor = "rgba(0, 0, 0, 0)";
         pageImgPreview.style.border = "none";
         reader.readAsDataURL(file); 
     } 
@@ -64,64 +105,20 @@ function previewPageImg() {
 
 function removePageImg() {
     pageImgInput.value = null;
-    pageImgPreview.innerHTML = `
-        <image src="/static/img/upload_image.svg" />
-        <span class="upload-post-img__inscription">Upload</span>
-    `;
     pageImgPreview.style.backgroundImage = "";
     pageImgPreviewPost.style.backgroundImage = "";
+    pageImgPreviewCard.style.backgroundImage = "";
+    for (i of pageImgPreview.children) {
+        i.classList.remove("hidden");
+    }
     pageImgPreview.style.backgroundColor = "#F7F7F7";
     pageImgPreviewPost.style.backgroundColor = "#F7F7F7";
+    pageImgPreviewCard.style.backgroundColor = "#F7F7F7";
     pageImgPreview.style.border = "1px dashed #D3D3D3";
     pageImgInscription.classList.remove("hidden");
     pageImgButtons.classList.add("hidden");
 }
 
-const cardImgInput = document.getElementById("upload-card-img__file-field");
-const cardImgPreview = document.getElementById("upload-card-img__button");
-const cardImgPreviewPost = document.querySelector(".card-area__img");
-const cardImgInscription = document.getElementById("add-post-form__card-inscription");
-const cardImgButtons = document.getElementById("add-post-form__uploaded-card-img-buttons");
-let base64CardImg = "";
-function previewCardImg() {
-    const file = cardImgInput.files[0];
-    
-    if (file) {
-        const reader = new FileReader();
-        reader.onloadend = function () {
-            base64CardImg = reader.result.replace("data:", "").replace(/^.+,/, "");
-            cardImgPreview.style.backgroundImage = "url(" + reader.result + ")";
-            cardImgPreviewPost.style.backgroundImage = "url(" + reader.result + ")";
-        }
-        cardImgInscription.classList.add("hidden");
-        cardImgButtons.classList.remove("hidden");
-        cardImgPreview.innerHTML = "";
-        cardImgPreview.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        cardImgPreviewPost.style.backgroundColor = "rgba(0, 0, 0, 0)";
-        cardImgPreview.style.border = "none";
-        reader.readAsDataURL(file); 
-    } 
-}
-
-function removeCardImg() {
-    cardImgInput.value = null;
-    cardImgPreview.innerHTML = `
-        <image src="/static/img/upload_image.svg" />
-        <span class="upload-post-img__inscription">Upload</span>
-    `;
-    
-    cardImgPreview.style.backgroundImage = "";
-    cardImgPreviewPost.style.backgroundImage = "";
-    cardImgPreview.style.backgroundColor = "#F7F7F7";
-    cardImgPreviewPost.style.backgroundColor = "#F7F7F7";
-    cardImgPreview.style.border = "1px dashed #D3D3D3";
-    cardImgInscription.classList.remove("hidden");
-    cardImgButtons.classList.add("hidden");
-}
-
-const titleInput = document.getElementById("add-post-form__title-input-field");
-const pageAreaTitle = document.querySelector(".page-area__title");
-const cardAreaTitle = document.querySelector(".card-area__title");
 function previewTitle() {
     setTextInputClass(titleInput);
 
@@ -129,9 +126,6 @@ function previewTitle() {
     cardAreaTitle.innerHTML = titleInput.value;
 }
 
-const subtitleInput = document.getElementById("add-post-form__subtitle-input-field");
-const pageAreaSubtitle = document.querySelector(".page-area__subtitle");
-const cardAreaSubtitle = document.querySelector(".card-area__subtitle");
 function previewSubtitle() {
     setTextInputClass(subtitleInput);
 
@@ -139,16 +133,12 @@ function previewSubtitle() {
     cardAreaSubtitle.innerHTML = subtitleInput.value;
 }
 
-const authorNameInput = document.getElementById("add-post-form__author-name-input-field");
-const cardAreaAuthorName = document.querySelector(".card-area__author-name");
 function previewAuthorName() {
     setTextInputClass(authorNameInput);
 
     cardAreaAuthorName.innerHTML = authorNameInput.value;
 }
 
-const publishDateInput = document.getElementById("add-post-form__publish-date-input-field");
-const cardAreaPublishDate = document.querySelector(".card-area__publish-date");
 function previewPublishDate() {
     setTextInputClass(publishDateInput);
 
@@ -164,16 +154,6 @@ function setTextInputClass(el) {
     }
 }
 
-const formError = document.querySelector(".new-post__error-message");
-const formSuccess = document.querySelector(".new-post__success-message");
-const titleError = document.getElementById("add-post-form__title-error");
-const subtitleError = document.getElementById("add-post-form__subtitle-error");
-const authorNameError = document.getElementById("add-post-form__author-name-error");
-const authorAvatarError = document.getElementById("add-post-form__author-avatar-error");
-const publishDateError = document.getElementById("add-post-form__publish-date-error");
-const pageImgError = document.getElementById("add-post-form__page-img-error");
-const contentError = document.querySelector(".content__error");
-const contentData = document.querySelector(".content__text-area");
 function checkInputs() {
     titleError.classList.add("hidden");
     subtitleError.classList.add("hidden");
@@ -285,12 +265,18 @@ async function createPost() {
             alert("Ошибка HTTP: " + response.status);
         }
     }
-}  
+} 
 
-const authorAvatarRemoveButton = document.querySelectorAll(".uploaded-img-buttons__remove")[0];
-const pageImgRemoveButton = document.querySelectorAll(".uploaded-img-buttons__remove")[1];
-const cardImgRemoveButton = document.querySelectorAll(".uploaded-img-buttons__remove")[2];
-const publishButton = document.querySelector(".new-post__publish-button");
+async function logOut() {
+    const response = await fetch("/api/logout");
+    if (response.ok) { 
+        window.location.href = "/login";
+    }
+    else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+}
+
 function initEventListeners() {
     titleInput.addEventListener("input", previewTitle);
     subtitleInput.addEventListener("input", previewSubtitle);
@@ -300,9 +286,8 @@ function initEventListeners() {
     authorAvatarRemoveButton.addEventListener('click', removeAuthorAvatar);
     pageImgInput.addEventListener("input", previewPageImg);
     pageImgRemoveButton.addEventListener('click', removePageImg);
-    cardImgInput.addEventListener("input", previewCardImg);
-    cardImgRemoveButton.addEventListener('click', removeCardImg);
     publishButton.addEventListener("click", createPost);
+    logoutButton.addEventListener("click", logOut);
 }
 
 initEventListeners();

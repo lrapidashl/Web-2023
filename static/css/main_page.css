@@ -12,6 +12,7 @@
 
 .top-block__title {
     font: 400 50px/1.02 "Lora", serif;
+    text-align: center;
     letter-spacing: 2px;
     margin: 0;
 }
@@ -20,6 +21,7 @@
     margin: 20px 0 31px;
     color: rgba(255, 255, 255, 0.63);
     font: 400 17px/1.18 "Oxygen", sans-serif;
+    text-align: center;
 }
 
 .top-block__button {
@@ -35,8 +37,8 @@
 
 .tags {
     display: flex;
-    flex-flow: wrap;
-    justify-content: space-around;
+    flex-flow: wrap;  
+    justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
     width: 100%;
@@ -55,7 +57,6 @@
     flex-flow: row wrap;
     justify-content: center;
     gap: 22px 20px;
-    padding: 0 17.36%;
     background: #F7F7F7;
 }
 
@@ -149,19 +150,26 @@
 
 .most-recent {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    gap: 0 24px;
-    padding: 0 17.36% 83px;
+    flex-flow: column wrap;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 0 83px;
     background: #F7F7F7;
+}
+
+.most-recent__posts {
+    display: flex;
+    flex-flow: wrap;
+    width: 100%;
+    max-width: 940px;
+    gap: 0 24px;
 }
 
 .most-recent__title {
     flex: 1 0 auto;
     text-align: center;
     max-width: 188px;
-    width: 100%;
-    margin: 67px 100% 22px;
+    margin: 67px 0 22px;
     padding: 0 0 16px;
     border-bottom: 1px solid #DEDEDE;
     color: #2E2E2E;
@@ -226,4 +234,71 @@
 .most-recent-post-info__date {
     font: 400 12px/3.18 "Oxygen", sans-serif;
     color: #999999;
+}
+
+@media screen and (min-width: 420px) {
+    
+    .featured-post {
+        max-width: 91.7%;
+    }
+
+    .most-recent__posts {
+        max-width: 91.7%;
+        gap: 0;
+    }
+
+    .most-recent-post {
+        max-width: 100%;
+    }
+
+    .tags {
+        padding: 22px 16.7% 29px;
+        gap: 26px 40px;
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .tags {
+        justify-content: space-around;
+        padding: 22px 17.3% 23px;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 650px) {
+    
+    .featured-post {
+        max-width: 45%;
+    }
+
+    .most-recent__posts {
+        max-width: 91.4%;
+        gap: 2.6%;
+    }
+
+    .most-recent-post {
+        max-width: 31.6%;
+    }
+
+    .tags {
+        justify-content: space-around;
+        padding: 22px 17.3% 23px;
+        gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    
+    .featured-post {
+        max-width: 460px;
+    }
+
+    .most-recent__posts {
+        max-width: 936px;
+        gap: 24px;
+    }
+
+    .most-recent-post {
+        max-width: 296px;
+    }
 }

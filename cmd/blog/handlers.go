@@ -4,16 +4,20 @@ import (
 	"database/sql"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 	"github.com/jmoiron/sqlx"
 )
+
+const authCookieName = "authBlog"
 
 type indexPage struct {
 	Title         string
@@ -63,13 +67,9 @@ type createPostRequest struct {
 	Content       string `json:"content"`
 }
 
-type authRequest struct {
+type userRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
-}
-
-type authResponse struct {
-	Check string
 }
 
 func index(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
@@ -153,22 +153,29 @@ func post(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func admin(w http.ResponseWriter, r *http.Request) {
-	ts, err := template.ParseFiles("pages/admin.html")
-	if err != nil {
-		http.Error(w, "Internal server error", 500)
-		log.Println(err.Error())
-		return
-	}
+func admin(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		err := authByCookie(db, w, r)
+		if err != nil {
+			return
+		}
 
-	err = ts.Execute(w, nil)
-	if err != nil {
-		http.Error(w, "Internal Server Error", 500)
-		log.Println(err.Error())
-		return
-	}
+		ts, err := template.ParseFiles("pages/admin.html")
+		if err != nil {
+			http.Error(w, "Internal server error", 500)
+			log.Println(err.Error())
+			return
+		}
 
-	log.Println("Request completed successfully")
+		err = ts.Execute(w, nil)
+		if err != nil {
+			http.Error(w, "Internal Server Error", 500)
+			log.Println(err.Error())
+			return
+		}
+
+		log.Println("Request completed successfully")
+	}
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -273,6 +280,11 @@ func postByID(db *sqlx.DB, postID int) (postData, error) {
 
 func createPost(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		err := authByCookie(db, w, r)
+		if err != nil {
+			return
+		}
+
 		reqData, err := io.ReadAll(r.Body)
 		if err != nil {
 			http.Error(w, "Internal server error", 500)
@@ -366,7 +378,7 @@ func uploadImg(imgFile string, imgName string) error {
 	return nil
 }
 
-func auth(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
+func logIn(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		reqData, err := io.ReadAll(r.Body)
 		if err != nil {
@@ -375,7 +387,7 @@ func auth(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		var req authRequest
+		var req userRequest
 
 		err = json.Unmarshal(reqData, &req)
 		if err != nil {
@@ -384,50 +396,88 @@ func auth(db *sqlx.DB) func(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		check, err := checkUser(db)
+		userId, err := checkUser(db, req)
 		if err != nil {
-			http.Error(w, "Internal server error3", 500)
+			http.Error(w, "Incorrect password or email", http.StatusUnauthorized)
 			log.Println(err.Error())
 			return
 		}
 
-		var resp authResponse
+		http.SetCookie(w, &http.Cookie{
+			Name:    authCookieName,
+			Value:   fmt.Sprint(userId),
+			Path:    "/",
+			Expires: time.Now().AddDate(0, 0, 1),
+		})
 
-		if check {
-			resp.Check = "yes"
-		}
-		if !check {
-			resp.Check = "no"
-		}
-
-		w.Header().Set("Content-Type", "application/json")
-		err = json.NewEncoder(w).Encode(resp)
-		if err != nil {
-			http.Error(w, "Internal server error4", 500)
-			log.Println(err.Error())
-			return
-		}
+		w.WriteHeader(200)
 	}
 }
 
-func checkUser(db *sqlx.DB) (bool, error) {
+func checkUser(db *sqlx.DB, req userRequest) (int, error) {
 	const query = `
 		SELECT
-			email,
-			pass
+		    user_id
 		FROM
-		 	auth
-		WHERE
-		  	post_id = ?
+			` + "`user`" +
+		`WHERE
+		  	email = ? 
+			AND ` + "`password`" + ` = ?
 	`
 
-	rows, err := db.Query(query)
+	userId := 0
+	err := db.Get(&userId, query, req.Email, req.Password)
 	if err != nil {
-		return false, err
+		return 0, err
+	}
+	return userId, nil
+}
+
+func authByCookie(db *sqlx.DB, w http.ResponseWriter, r *http.Request) error {
+	cookie, err := r.Cookie(authCookieName)
+	if err != nil {
+		if err == http.ErrNoCookie {
+			http.Redirect(w, r, "/login", http.StatusSeeOther)
+			log.Println(err)
+			return err
+		}
+		http.Error(w, "Internal Server Error", 500)
+		log.Println(err)
+		return err
 	}
 
-	for rows.Next() {
-		log.Println(rows)
+	userIDStr := cookie.Value
+
+	const query = `
+	    SELECT
+			EXISTS(
+				SELECT
+					1
+				FROM
+					` + "`user`" + `
+				WHERE
+		  			user_id = ?
+				)
+	`
+	var exist bool
+	err = db.Get(&exist, query, userIDStr)
+	if err != nil {
+		return err
 	}
-	return true, nil
+	if !exist {
+		http.Error(w, "failed to find user with id "+userIDStr, http.StatusUnauthorized)
+		return fmt.Errorf("failed to find user with id %s", userIDStr)
+	}
+
+	return nil
+}
+
+func logOut(w http.ResponseWriter, r *http.Request) {
+	http.SetCookie(w, &http.Cookie{
+		Name:    authCookieName,
+		Path:    "/",
+		Expires: time.Now().AddDate(0, 0, -1),
+	})
+
+	w.WriteHeader(200)
 }

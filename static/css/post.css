@@ -18,8 +18,9 @@
 }
 
 .post__image {
-    height: 534;
+    height: 534px;
     width: 100%;
+    object-fit: cover;
     margin: 113px 0 0 0;
 }
 

@@ -4,9 +4,9 @@
 
 .heading {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     position: absolute;
+    box-sizing: border-box;
     margin: 20.2px 0 0 0;
     width: 100%;
     color: #FFFFFF;
@@ -18,13 +18,13 @@
 
 .heading__logo {
     font: 400 26px "Lora", serif;
+    flex: 1 0 auto;
 }
 
 .heading__nav {
-    display: flex;
+    display: none;
     justify-content: space-around;
     flex-flow: wrap; 
-    gap: 40px;
     font: 400 12px/1.86 "Oxygen", sans-serif;
     letter-spacing: 0.6px;
     text-transform: uppercase;
@@ -39,6 +39,51 @@
     color: #000000;
 }
 
+.heading__menu {
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+    margin: 0 7px 0 0;
+}
+
+.heading__menu-line {
+    width: 35px;
+    min-height: 2px;
+    background: #D9D9D9;
+}
+
+.heading__menu-line_color_black {
+    width: 35px;
+    min-height: 2px;
+    background: #2E2E2E;
+}
+
+.heading__burger {
+    display: flex;
+    position: absolute;
+    top: -20.2px;
+    right: 0;
+    flex-flow: column;
+    align-items: center;
+    padding: 10px 0;
+    gap: 20px;
+    width: 150px;
+    background: #D9D9D9;
+    overflow: hidden;
+    transition: width 0.3s linear;
+}
+
+.heading__burger_hidden {
+    width: 0;
+    transition: width 0.3s linear;
+}
+
+.burger__link {
+    font: 400 14px "Oxygen", sans-serif;
+    color: #000000;
+    text-decoration: none; 
+}
+
 .bottom-block {
     background: url(../img/footer_image.png);
     background-size: cover;
@@ -48,7 +93,6 @@
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    padding: 81px 0 90px;
 }
 
 .mailing__title {
@@ -62,6 +106,7 @@
 .mailing__form {
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
     width: 100%;
 }
 
@@ -89,10 +134,8 @@
 
 .basement {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    box-sizing: border-box;
     width: 100%;
-    padding: 27.7px 0;
     background: rgba(35, 47, 56, 0.6);
     border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
@@ -100,11 +143,13 @@
 .basement__logo {
     color: #FFFFFF;
     font: 400 26px "Lora", serif;
+    flex: 1 0 auto;
 }
 
 .basement__nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    flex-flow: wrap;
     width: 26%;
     font: 400 11px/2.36 "Oxygen", sans-serif;
 }
@@ -112,4 +157,54 @@
 .basement__nav-link {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (min-width: 420px){
+    .heading__nav {
+        display: none;
+    }
+
+    .heading {
+        padding: 0 4.2%;
+    }
+
+    .mailing {
+        padding: 82px 6.25% 77px;
+    }
+
+    .basement {
+        padding: 30px 5.6% 30px 3.5%
+    }
+
+    .basement__nav {
+        max-width: 26px;
+    }
+}
+
+@media screen and (min-width: 480px){
+    .heading__nav {
+        display: flex;
+        flex-flow: nowrap;
+        max-width: 54.5%;
+        width: 100%;
+    }
+
+    .heading__menu {
+        display: none;
+    }
+
+    .heading__burger {
+        display: none;
+    }
+
+    .basement__nav {
+        justify-content: space-around;
+        flex-flow: nowrap;
+        max-width: 50%;
+        width: 100%;
+    }
 }

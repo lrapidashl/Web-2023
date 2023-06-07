@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Let's do it together</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/static/js/main.js" defer></script>
     <link rel="stylesheet" href="static/css/main.css" />
     <link rel="stylesheet" href="static/css/main_page.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
@@ -18,6 +20,17 @@
         <a href="#" class="heading__nav-link">ABOUT</a>
         <a href="#" class="heading__nav-link">CONTACT</a>
       </nav>
+      <div class="heading__menu" id="heading__menu">
+        <div class="heading__menu-line"></div>
+        <div class="heading__menu-line"></div>
+        <div class="heading__menu-line"></div>
+      </div>
+      <div class="heading__burger heading__burger_hidden" id="heading__burger">
+        <a href="/home" class="burger__link">HOME</a>
+        <a href="#" class="burger__link">CATEGORIES</a>
+        <a href="#" class="burger__link">ABOUT</a>
+        <a href="#" class="burger__link">CONTACT</a>
+      </div>
     </header>
     <div class="top-block">
       <h2 class="top-block__title">Let's do it together.</h2>
@@ -48,6 +61,7 @@
     </section>
     <section class="most-recent">
       <h2 class="most-recent__title">Most Recent</h2>
+      <div class="most-recent__posts">
       {{ range .MostRecent }}
         <a href="{{ .PostURL }}" class="most-recent-post">
           <img src="{{ .Img }}" class="most-recent-post__image" />
@@ -60,6 +74,7 @@
           </div>
         </a>
       {{ end }}
+      </div>
     </section>
     <div class="bottom-block">
       <div class="mailing">
