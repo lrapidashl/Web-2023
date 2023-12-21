@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>The Road Ahead</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/static/js/main.js" defer></script>
     <link rel="stylesheet" href="/static/css/main.css" />
     <link rel="stylesheet" href="/static/css/post.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Oxygen&family=Roboto&display=swap" rel="stylesheet">
@@ -19,16 +20,22 @@
         <a href="#" class="heading__nav-link heading__nav-link_color_black">ABOUT</a>
         <a href="#" class="heading__nav-link heading__nav-link_color_black">CONTACT</a>
       </nav>
-      <div class="heading__menu">
+      <div class="heading__menu" id="heading__menu">
         <div class="heading__menu-line heading__menu-line_color_black"></div>
         <div class="heading__menu-line heading__menu-line_color_black"></div>
         <div class="heading__menu-line heading__menu-line_color_black"></div>
+      </div>
+      <div class="heading__burger heading__burger_hidden" id="heading__burger">
+        <a href="/home" class="burger__link">HOME</a>
+        <a href="#" class="burger__link">CATEGORIES</a>
+        <a href="#" class="burger__link">ABOUT</a>
+        <a href="#" class="burger__link">CONTACT</a>
       </div>
     </header>
     <article class="post">
       <h1 class="post__title">{{ .Title }}</h1>
       <h2 class="post__subtitle">{{ .Subtitle }}</h2>
-      <img src="/{{ .Img }}" class="post__image" />
+      <img src="/{{ .Img }}" class="post__image"  alt=""/>
       <div class="post__paragraphs">
         <p class="post__paragraph">{{ .Content }}</p>
       </div>

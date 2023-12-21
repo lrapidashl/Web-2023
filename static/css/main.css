@@ -204,7 +204,7 @@
     .basement__nav {
         justify-content: space-around;
         flex-flow: nowrap;
-        max-width: 50%;
+        max-width: 400px;
         width: 100%;
     }
 }

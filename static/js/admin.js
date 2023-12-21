@@ -234,10 +234,8 @@ async function createPost() {
     if (!checkInputs()) {
         const authorAvatarFile = authorAvatarInput.files[0];
         const pageImgFile = pageImgInput.files[0];
-        const cardImgFile = cardImgInput.files[0];
         const authorAvatar = authorAvatarFile ? authorAvatarFile.name : "";
         const pageImg = pageImgFile ? pageImgFile.name : "";
-        const cardImg = cardImgFile ? cardImgFile.name : "";
         const formData = {
             title: titleInput.value,
             subtitle: subtitleInput.value,
@@ -247,8 +245,6 @@ async function createPost() {
             publish_date: publishDateInput.value,
             page_image: pageImg,
             page_image_file: base64PageImg,
-            card_image: cardImg,
-            card_image_file: base64CardImg,
             content: contentData.value
         }
         const json = JSON.stringify(formData);
